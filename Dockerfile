@@ -1,6 +1,6 @@
 ##Dockerfile
 FROM centos:latest
-MAINTANER abhijit.kale@hotmail.com
+MAINTAINER abhijit.kale@hotmail.com
 RUN yum install -y httpd \
 zip \
 unzip
