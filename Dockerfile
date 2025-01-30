@@ -10,8 +10,8 @@ RUN yum install -y httpd \
 zip \
 unzip
 #ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip /var/www/html/
-RUN curl https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip
-COPY photogenic.zip /var/www/html
+RUN curl -o /tmp/photogenic.zip https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip
+COPY /tmp/photogenic.zip /var/www/html
 WORKDIR /var/www/html
 RUN unzip photogenic.zip
 RUN cp -rvf photogenic/* .
