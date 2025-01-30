@@ -9,8 +9,8 @@ RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|
 RUN yum install -y httpd \
 zip \
 unzip
-ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip /var/www/html/photogenic.zip
-#RUN curl -o /tmp/photogenic.zip https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip && cp /tmp/photogenic.zip /var/www/html/photogenic.zip
+#ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip /var/www/html/photogenic.zip
+RUN curl -o /var/www/html/photogenic.zip https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip
 WORKDIR /var/www/html
 RUN unzip photogenic.zip
 RUN cp -rvf photogenic/* .
