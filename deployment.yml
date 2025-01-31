@@ -1,0 +1,17 @@
+   name: mrdevops
+   spec:
+    replicas: 2
+    selector:      #tells the controller which pods to watch/belogs to
+     matchLables:
+       app: mrdevops
+    template:
+        metadata:
+          labels:
+             app: mrdevops
+        spec:
+         containers:
+           - name: mrdevops
+             image: abhijitkale2025/pipeline_demo2
+             imagePullPolicy: Always
+             ports:
+             - containerPort: 80
