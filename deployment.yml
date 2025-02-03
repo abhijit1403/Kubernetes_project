@@ -1,6 +1,8 @@
-   
-   name: mrdevops
-   spec:
+kind: deployment
+apiVersion: apps/v1
+metadata:
+    name: mrdevops
+spec:
     replicas: 2
     selector:      #tells the controller which pods to watch/belogs to
      matchLables:

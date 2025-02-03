@@ -2,6 +2,6 @@
   become: true
   tasks:
      - name: create new deployment
-       command: kubectl apply --validate=false -f /home/jenkins/deployment.yml
+       command: kubectl apply -f /home/jenkins/deployment.yml
      - name: create new service
-       command: kubectl apply --validate=false -f /home/jenkins/Services.yml
+       command: kubectl apply -f /home/jenkins/Services.yml
