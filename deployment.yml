@@ -1,4 +1,5 @@
-   apiVerion: v1
+   
+   apiVersion: apps/v1
    name: mrdevops
    spec:
     replicas: 2
