@@ -1,5 +1,4 @@
 kind: services
-apiVersion: v1
 metadata:
   name: mrdevops
   labels:
