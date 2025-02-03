@@ -2,6 +2,6 @@
   become: true
   tasks:
      - name: create new deployment
-       command: kebectl apply -f /home/ubuntu/Deployment.yml
+       command: kebectl apply -f /home/jenkins/Deployment.yml
      - name: create new service
-       command: kubectl apply -f /home/ubuntu/servies.yml
+       command: kubectl apply -f /home/jenkins/servies.yml
