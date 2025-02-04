@@ -5,7 +5,7 @@ metadata:
 spec:
     replicas: 2
     selector:      #tells the controller which pods to watch/belogs to
-     matchLables:
+     matchLabels:
        app: mrdevops
     template:
         metadata:
