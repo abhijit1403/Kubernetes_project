@@ -3,7 +3,7 @@ apiVersion: apps/v1
 metadata:
     name: mrdevops
 spec:
-    replicas: 2
+    replicas: 1
     selector:      #tells the controller which pods to watch/belogs to
      matchLabels:
        app: mrdevops
