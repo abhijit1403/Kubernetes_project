@@ -15,6 +15,6 @@ spec:
          containers:
            - name: mrdevops
              image: abhijitkale2025/pipeline_demo
-             imagePullPolicy: Never
+             imagePullPolicy: Always
              ports:
              - containerPort: 80
