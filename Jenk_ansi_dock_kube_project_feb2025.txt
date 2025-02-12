@@ -1,0 +1,180 @@
+
+#####Kebernetes config with Docker###########
+##root##
+  adduser jenkins
+  iptables -L
+##sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+  iptables -L
+  cd /etc/sudoers.d
+  vim jenkins
+  cd /etc/ssh/sshd_config.d/
+  systemctl restart sshd
+  passwd jenkins
+  kubectl get pods
+  kubectl get all
+  kubectl get svc
+  kubectl delete deployment
+  kubectl delete pod/mrdevops-859ff77dcf-49jmn
+  kubectl delete replicaset.apps/mrdevops-859ff77dcf
+  kubectl delete deployment.apps/mrdevops
+  kubectl delete service/mrdevops
+  kubectl get all
+##usermod -a -G docker jenkins
+  sudo su jenkins
+##jenkins##
+  cd ~
+  mkdir ~/.ssh; cd ~/.ssh/ && ssh-keygen -t rsa -m PEM -C "Jenkins agent key" -f "jenkinsAgent_rsa"
+  cat jenkinsAgent_rsa.pub >> ~/.ssh/authorized_keys
+  chmod 700 ~/.ssh
+  chmod 600 ~/.ssh/authorized_keys ~/.ssh/jenkinsAgent_rsa
+  cd .ssh/
+  cat jenkinsAgent_rsa		---copy to jenkins ssh-agent
+  cd /etc/sudoers.d/		
+  vim jenkins 				---create file with user name(jenkins) example-(jenkins ALL=(ALL:ALL) NOPASSWD: ALL)
+  kubectl get all
+  kubectl get pods
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+  kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+  kubectl get all
+  kubectl get pods
+##docker login
+  kubectl get deployment -w
+  kubectl describe pod posts
+  kubectl logs service/mrdevops
+  kubectl logs pod/mrdevops-669bd954bb-dbbx4
+  kubectl logs deployment.apps/mrdevops
+  kubectl get pods -n mrdevops
+  kubectl get pods -n mrdevops-669bd954bb-dbbx4
+  kubectl get nodes -o wide
+  cd ~
+  kubectl get pods -A
+  kubectl delete replicaset.apps/mrdevops-77b4b68d65
+  kubectl delete deployment.apps/mrdevops
+  kubectl delete service/mrdevops
+  kubectl delete pod/mrdevops-77b4b68d65-wfwtm
+  kubectl logs mrdevops-669bd954bb-dbbx4
+  kubectl describe pod mrdevops
+  kubectl get pods
+  kubectl get all
+  
+#########################Ansible with Docker###########################
+##root##
+  vi /etc/ssh/sshd_config				--comment other config files & enable password authorization
+  apt-add-repository ppa:ansible/ansible
+  apt update
+  apt install software-properties-common
+  add-apt-repository --yes --update ppa:ansible/ansible
+  apt install ansible
+  cd /etc/apt/sources.list.d/
+  vim archive_uri-http_apt_kubernetes_io_kubernetes-xenial-groovy.list
+  mv -f archive_uri-http_apt_kubernetes_io_kubernetes-xenial-groovy.list archive_uri-http_apt_kubernetes_io_kubernetes-xenial-groovy.list_bkp
+  apt update
+  rm archive_uri-http_apt_kubernetes_io_kubernetes-xenial-groovy.list_bkp
+  apt update
+  apt install software-properties-common
+  add-apt-repository --yes --update ppa:ansible/ansible
+  apt install ansible
+  ansible --version
+  iptables -L
+  iptables -L
+  cat id_rsa
+  cat authorized_keys
+  adduser jenkins
+  sudo su jenkins
+  usermod -aG sudo jenkins
+  sudo su jenkins
+  history | grep docker
+  apt update
+  apt install docker.io
+  systemctl enable docker
+  systemctl status docker
+  docker --version
+  su jenkins
+  usermod -a -G docker jenkins
+  iptables -L
+  vim /etc/ansible/hosts				--inventory file add hosts
+  sudo vim /etc/ansible/hosts
+##jenkins  groups jenkins
+  usermod -aG sudo jenkins
+  mkdir ~/.ssh; cd ~/.ssh/ && ssh-keygen -t rsa -m PEM -C "Jenkins agent key" -f "jenkinsAgent_rsa"
+  cat jenkinsAgent_rsa.pub >> ~/.ssh/authorized_keys
+  chmod 700 ~/.ssh
+  chmod 600 ~/.ssh/authorized_keys ~/.ssh/jenkinsAgent_rsa
+  cat ~/.ssh/jenkinsAgent_rsa
+  sudo su
+  docker ps
+  docker ps -a
+  docker rm 4e129282aa59
+  docker images
+  iptables -L
+  docker ps -a
+  docker rmi 3798ce30ba87 5d0da3dc9764
+  docker images
+  docker ps -a
+  docker events
+  curl -o /tmp/photogenic.zip https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip
+  docker login
+  docker images
+  docker ps -a
+  docker rmi abhijitkale2025/pipeline_demo2:latest
+  docker rmi abhijitkale2025/pipeline_demo2:v1.25
+  docker ps -a
+  ip addr
+  sudo vim /etc/ansible/hosts
+  ansible -m ping node
+  ip addr
+  ssh-copy-id jenkins@192.168.100.115			-- copy private key to remote host
+  ssh-copy-id -i jenkinsAgent_rsa.pub jenkins@192.168.100.115
+  ssh jenkins@192.168.100.115
+  cp -f jenkinsAgent_rsa id_rsa
+  cp -f jenkinsAgent_rsa.pub id_rsa.pub
+  cd  .ssh/
+  cat authorized_keys
+  ansible -m ping
+  ansible -m ping 192.168.100.115
+  ssh jenkins@192.168.100.115
+  ansible -m ping 192.168.100.115
+  ansible-playbook ansible.yml --check
+  ansible-playbook ansible.yml --syntax-check
+  ip addr
+  docker login
+  ssh jenkins@192.168.100.167
+  ssh-copy-id jenkins@192.168.100.167
+  ssh jenkins@192.168.100.167
+
+############################Jenkins server########################################  
+##root##  
+  ip addr
+  vi /etc/ssh/sshd_config				--comment other config folder & enable passowrd authorization
+  systemctl status sshd
+  systemctl restart sshd
+  systemctl status sshd
+  systemctl reload sshd
+  systemctl edit jenkins
+  cd /var/log/jenkins/
+  tail -n 100 syslog
+  cd /var/lib/jenkins/
+  cat config.xml
+##jenkins##
+  pwd
+  cd /var/log/jenkins/
+  systemctl edit jenkins
+  echo $JENKINS_HOME
+  cd /var/lib/jenkins/
+  cd logs/
+  cd tasks/
+  cd 'Fingerprint cleanup.log'
+  cat 'Fingerprint cleanup.log
+  tail -n 100 Fingerprint\ cleanup.log
+  cd /var/lib/jenkins
+  cat config.xml
+  cd jobs/
+  cd pipeline_demo/
+  cd builds/
+  cd logs/
+  cat health-checker.log
+  systemctl edit jenkins
+  cd /var/lib/jenkins/workspace/
